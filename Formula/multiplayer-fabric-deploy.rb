@@ -1,15 +1,15 @@
 class MultiplayerFabricDeploy < Formula
   desc "TUI deploy tool for multiplayer-fabric-godot builds"
   homepage "https://github.com/V-Sekai-fire/multiplayer-fabric-deploy"
-  version "0.4.7"
+  version "0.4.8"
   license "MIT"
 
   depends_on "libgit2"
 
   on_macos do
     on_arm do
-      url "https://github.com/V-Sekai-fire/multiplayer-fabric-deploy/releases/download/v0.4.7/multiplayer_fabric_deploy-v0.4.7-darwin-arm64.tar.gz"
-      sha256 "5fe36ecf9d444208be233f27e4bf447a3aa30f3cc16524bedbe68b917b25ee4a"
+      url "https://github.com/V-Sekai-fire/multiplayer-fabric-deploy/releases/download/v0.4.8/multiplayer_fabric_deploy-v0.4.8-darwin-arm64.tar.gz"
+      sha256 "72999c83b69f29b85fb8a82227b779a3c6402b00f3869dfa4d40ded8cb9539b8"
     end
   end
 
