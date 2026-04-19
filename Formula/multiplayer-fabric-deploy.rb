@@ -1,32 +1,26 @@
 class MultiplayerFabricDeploy < Formula
   desc "TUI deploy tool for multiplayer-fabric-godot builds"
   homepage "https://github.com/V-Sekai-fire/multiplayer-fabric-deploy"
-  url "https://github.com/V-Sekai-fire/multiplayer-fabric-deploy/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "0e867e33512d45cbc5b2a5b43e0b9c39fa44920f9bf2d85fa57635459bf7efd9"
-  version "0.2.0"
+  version "0.3.0"
   license "MIT"
 
-  depends_on "elixir"
+  on_macos do
+    on_arm do
+      url "https://github.com/V-Sekai-fire/multiplayer-fabric-deploy/releases/download/v0.3.0/multiplayer_fabric_deploy-v0.3.0-darwin-arm64.tar.gz"
+      sha256 "9c044ea765861b98043b07a01b51ac89d35f04b215e5b04e8c1afb41a80effb3"
+    end
+  end
 
   def install
-    libexec.install Dir["*"]
-
-    system "#{Formula["elixir"].bin}/mix", "local.hex", "--force"
-    system "#{Formula["elixir"].bin}/mix", "local.rebar", "--force"
-
-    cd libexec do
-      ENV["MIX_ENV"] = "prod"
-      system "#{Formula["elixir"].bin}/mix", "deps.get", "--only", "prod"
-    end
+    libexec.install "multiplayer_fabric_deploy"
 
     (bin/"multiplayer_fabric_deploy").write <<~SH
       #!/bin/sh
-      cd #{libexec} && MIX_ENV=prod exec #{Formula["elixir"].bin}/mix run \
-        -e "MultiplayerFabricDeploy.main([])" "$@"
+      exec #{libexec}/multiplayer_fabric_deploy/bin/multiplayer_fabric_deploy eval "MultiplayerFabricDeploy.main([])"
     SH
   end
 
   test do
-    assert_predicate bin/"multiplayer_fabric_deploy", :exist?
+    assert_predicate libexec/"multiplayer_fabric_deploy/bin/multiplayer_fabric_deploy", :exist?
   end
 end
