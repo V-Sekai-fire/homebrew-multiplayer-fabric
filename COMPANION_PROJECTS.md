@@ -27,6 +27,9 @@ The following end-to-end paths are working on `main` or in open PRs:
 | CockroachDB TLS auth | **Working** | `mix uro.crdb_gen_certs` (PR #8 merged) |
 | Zone-to-zone entity migration | **Working** | `SCENARIO_JELLYFISH_ZONE_CROSSING` in `fabric_zone.cpp` |
 | 511+ jellyfish across 3-zone loop | **Working** | `MIGRATION_HEADROOM = 400` |
+| Deploy TUI (multiplayer-fabric-deploy) | **Fixed — v0.4.10** | `brew install multiplayer-fabric-deploy`; sccache unconditional in scons |
+| Zone backend (multiplayer-fabric-zone-backend) | **Fixed** | `brew install multiplayer-fabric-zone-backend` (pending release tarball) |
+| Branch assembly (multiplayer-fabric-merge) | **Fixed** | `brew install multiplayer-fabric-merge` (pending release tarball) |
 
 Two-hour demo path: zone_console start → jellyfish_asset_loader fetches from Uro → scene instanced in xr-grid → visible in VR.
 
