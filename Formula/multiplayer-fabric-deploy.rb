@@ -14,15 +14,15 @@ class MultiplayerFabricDeploy < Formula
   end
 
   def install
-    libexec.install "multiplayer_fabric_deploy"
+    libexec.install Dir["*"]
 
     (bin/"multiplayer_fabric_deploy").write <<~SH
       #!/bin/sh
-      exec #{libexec}/multiplayer_fabric_deploy/bin/multiplayer_fabric_deploy eval "MultiplayerFabricDeploy.main([])"
+      exec #{libexec}/bin/multiplayer_fabric_deploy eval "MultiplayerFabricDeploy.main([])"
     SH
   end
 
   test do
-    assert_predicate libexec/"multiplayer_fabric_deploy/bin/multiplayer_fabric_deploy", :exist?
+    assert_predicate libexec/"bin/multiplayer_fabric_deploy", :exist?
   end
 end
