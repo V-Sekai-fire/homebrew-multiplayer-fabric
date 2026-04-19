@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  audit:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+      - name: Tap this repo
+        run: brew tap V-Sekai-fire/multiplayer-fabric "$(pwd)"
+      - name: Audit formulas
+        run: brew audit --strict Formula/*.rb
+      - name: Style check
+        run: brew style Formula/*.rb
