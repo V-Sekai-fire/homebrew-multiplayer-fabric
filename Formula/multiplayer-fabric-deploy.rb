@@ -6,8 +6,8 @@ class MultiplayerFabricDeploy < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/V-Sekai-fire/multiplayer-fabric-deploy/releases/download/v0.3.0/multiplayer_fabric_deploy-v0.3.0-darwin-arm64.tar.gz"
-      sha256 "9c044ea765861b98043b07a01b51ac89d35f04b215e5b04e8c1afb41a80effb3"
+      url "https://github.com/V-Sekai-fire/multiplayer-fabric-deploy/releases/download/v0.3.1/multiplayer_fabric_deploy-v0.3.1-darwin-arm64.tar.gz"
+      sha256 "63b31d6f5e6426ccccfb0b8f6c9ffb555e03c21954f3b38fd4a12443f5007c12"
     end
   end
 
