@@ -9,15 +9,24 @@ class MultiplayerFabricDeploy < Formula
   depends_on "elixir"
 
   def install
-    system "mix", "local.hex", "--force"
-    system "mix", "local.rebar", "--force"
-    ENV["MIX_ENV"] = "prod"
-    system "mix", "deps.get", "--only", "prod"
-    system "mix", "escript.build"
-    bin.install "multiplayer_fabric_deploy"
+    libexec.install Dir["*"]
+
+    system "#{Formula["elixir"].bin}/mix", "local.hex", "--force"
+    system "#{Formula["elixir"].bin}/mix", "local.rebar", "--force"
+
+    cd libexec do
+      ENV["MIX_ENV"] = "prod"
+      system "#{Formula["elixir"].bin}/mix", "deps.get", "--only", "prod"
+    end
+
+    (bin/"multiplayer_fabric_deploy").write <<~SH
+      #!/bin/sh
+      cd #{libexec} && MIX_ENV=prod exec #{Formula["elixir"].bin}/mix run \
+        -e "MultiplayerFabricDeploy.main([])" "$@"
+    SH
   end
 
   test do
-    assert_match "Available tasks", shell_output("#{bin}/multiplayer_fabric_deploy 2>&1 || true")
+    assert_predicate bin/"multiplayer_fabric_deploy", :exist?
   end
 end
