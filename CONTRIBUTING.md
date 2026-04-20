@@ -30,7 +30,7 @@ itself — contributions are formula edits and version bumps.
 3. Remove any `revision` line unless a formula-level patch has been
    re-applied.
 4. Run `brew audit --strict` and `brew install --build-from-source`.
-5. Commit as `formula(<name>): bump to <version>`.
+5. Commit as `Bump <name> to <version>`.
 
 ## Design notes
 
